@@ -15,5 +15,4 @@ data_dlib_path = data_path + "data_dlib/"
 feature_all_csv_path = path_photos_from_camera + "features_all.csv"
 predictor_path = data_dlib_path + "shape_predictor_68_face_landmarks.dat"  # 人脸检测器
 recognition_model_path = data_dlib_path + "dlib_face_recognition_resnet_model_v1.dat"  # 人脸识别模型，该模型返回的是128维向量
-face_path = ""  # 存储人脸的文件夹
 camera_this = 0

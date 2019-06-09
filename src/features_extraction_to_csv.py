@@ -21,7 +21,7 @@ def return_128d_features(path_img, detector, predictor, face_rec):
     # 因为有可能截下来的人脸再去检测，检测不出来人脸了
     # 所以要确保是检测到人脸的人脸图像拿去算特征
     if len(faces) != 0:
-        print("%-40s %-20s" % ("检测到人脸的图像 / image with faces detected:", path_img), '\n')
+        print("%-40s %-20s" % ("检测到人脸的图像:", path_img), '\n')
         shape = predictor(img_gray, faces[0])
         face_descriptor = face_rec.compute_face_descriptor(img_gray, shape)
     else:
@@ -39,16 +39,12 @@ def return_features_mean_personX(path_faces_personX, detector, predictor, face_r
         for i in range(len(photos_list)):
             photo_this = path_faces_personX + "/" + photos_list[i]
             # 调用return_128d_features()得到128d特征
-            print("%-40s %-20s" % ("正在读的人脸图像 / image to read:", photo_this))
+            print("%-40s %-20s" % ("正在读的人脸图像:", photo_this))
             features_128d = return_128d_features(photo_this, detector, predictor, face_rec)
             #  print(features_128d)
             # 遇到没有检测出人脸的图片跳过
             if features_128d != 0:
                 features_list_personX.append(features_128d)
-#             if features_128d == 0:
-#                 i += 1
-#             else:
-#                 features_list_personX.append(features_128d)
     else:
         print("文件夹内图像文件为空 / Warning: No images in " + path_faces_personX + '/', '\n')
 
@@ -71,17 +67,18 @@ def get_features():
     face_rec = dlib.face_recognition_model_v1(pv.recognition_model_path)
     # 读取某人所有的人脸图像的数据
     people = os.listdir(pv.path_photos_from_camera)
-    people.sort()
+    if "features_all.csv" in people:people.remove("features_all.csv")
     with open(pv.feature_all_csv_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         for person in people:
             print("##### " + person + " #####")
-            # Get the mean/average features of face/personX, it will be a list with a length of 128D
+            # 得到人脸特征并取平均，数据格式为float64
             features_mean_personX = return_features_mean_personX(pv.path_photos_from_camera + person, detector, predictor, face_rec)
-            writer.writerow(features_mean_personX)
-            print("特征均值 / The mean of features:", list(features_mean_personX))
-            print('\n')
-        print("所有录入人脸数据存入 / Save all the features of faces registered into: " + pv.feature_all_csv_path)
+            # 将人名加入到数据内，写入csv
+            featire_write = np.concatenate((np.array([person]), features_mean_personX))
+            writer.writerow(featire_write)
+#             print("特征均值:", list(features_mean_personX))
+        print("所有录入人脸数据存入: " + pv.feature_all_csv_path)
 
 
 if __name__ == '__main__':
