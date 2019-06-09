@@ -3,6 +3,8 @@
 # 参考：https://github.com/coneypo/Dlib_face_recognition_from_camera
 # 作者邮箱：476003177@qq.com
 # 使用方法：1、运行get_face_from_camera录入人脸信息；2、运行face_reco_from_camera识别
+
+# 公共变量文件
 import  os
 workplace_path = os.getcwd()
 workplace_path = workplace_path.replace("\\", "/")

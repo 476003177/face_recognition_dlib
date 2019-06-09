@@ -1,27 +1,32 @@
+# coding: utf-8
+# ä»‹ç»ï¼šä¸»è¦åˆ©ç”¨dlibå®ç°æ‘„åƒå¤´çš„äººè„¸è¯†åˆ«
+# å‚è€ƒï¼šhttps://github.com/coneypo/Dlib_face_recognition_from_camera
+# ä½œè€…é‚®ç®±ï¼š476003177@qq.com
+# ä½¿ç”¨æ–¹æ³•ï¼š1ã€è¿è¡Œget_face_from_cameraå½•å…¥äººè„¸ä¿¡æ¯ï¼›2ã€è¿è¡Œface_reco_from_cameraè¯†åˆ«
+
+# æ‘„åƒå¤´ç±»
 import cv2
 
-
-# ÉãÏñÍ·Àà
 class video:
 
     def __init__(self, camera_this):
-        # OpenCv µ÷ÓÃÉãÏñÍ· use camera£¬0±íÊ¾µÚÒ»¸öÉãÏñÍ·£¬¼´±Ê¼Ç±¾ÄÚ½¨ÉãÏñÍ·£¬»»Î»ÎÄ¼şÂ·¾¶¼´Ê¶±ğÊÓÆµ
+        # OpenCv è°ƒç”¨æ‘„åƒå¤´ use cameraï¼Œ0è¡¨ç¤ºç¬¬ä¸€ä¸ªæ‘„åƒå¤´ï¼Œå³ç¬”è®°æœ¬å†…å»ºæ‘„åƒå¤´ï¼Œæ¢ä½æ–‡ä»¶è·¯å¾„å³è¯†åˆ«è§†é¢‘
         self.cap = cv2.VideoCapture(camera_this)
         
-    def is_open(self):  # ²é¿´ÉãÏñÍ·ÊÇ·ñ¹Ø±Õ
+    def is_open(self):  # æŸ¥çœ‹æ‘„åƒå¤´æ˜¯å¦å…³é—­
         return self.cap.isOpened()
     
-    def get_key(self, key):  # µÃµ½ÊôĞÔ
+    def get_key(self, key):  # å¾—åˆ°å±æ€§
         return self.cap.get(propId=key)
     
     def set_key(self, key, value):
-        # ÉèÖÃÊÓÆµ²ÎÊı: propId - ÉèÖÃµÄÊÓÆµ²ÎÊı, value - ÉèÖÃµÄ²ÎÊıÖµ
+        # è®¾ç½®è§†é¢‘å‚æ•°: propId - è®¾ç½®çš„è§†é¢‘å‚æ•°, value - è®¾ç½®çš„å‚æ•°å€¼
         return self.cap.set(propId=key, value=value)
     
-    def read(self):  # ¶ÁÈ¡Í¼Ïó
+    def read(self):  # è¯»å–å›¾è±¡
         flag, img_rd = self.cap.read()
         return flag, img_rd
     
     def close(self):  
-        self.cap.release()  # ÊÍ·ÅÉãÏñÍ·
-        cv2.destroyAllWindows()  # É¾³ı½¨Á¢µÄ´°¿Ú delete all the windows
+        self.cap.release()  # é‡Šæ”¾æ‘„åƒå¤´
+        cv2.destroyAllWindows()  # åˆ é™¤å»ºç«‹çš„çª—å£ delete all the windows

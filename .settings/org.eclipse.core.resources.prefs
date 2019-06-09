@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/capture_video.py=utf-8
 encoding//src/face_reco_from_camera.py=utf-8
 encoding//src/features_extraction_to_csv.py=utf-8
 encoding//src/get_faces_from_camera.py=utf-8

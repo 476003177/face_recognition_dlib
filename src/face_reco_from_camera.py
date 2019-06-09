@@ -1,4 +1,8 @@
 # coding: utf-8
+# 介绍：主要利用dlib实现摄像头的人脸识别
+# 参考：https://github.com/coneypo/Dlib_face_recognition_from_camera
+# 作者邮箱：476003177@qq.com
+# 使用方法：1、运行get_face_from_camera录入人脸信息；2、运行face_reco_from_camera识别
 
 # 摄像头实时人脸识别
 from capture_video import video  # 摄像头类

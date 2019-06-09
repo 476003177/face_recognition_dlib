@@ -1,4 +1,9 @@
 # coding: utf-8
+# 介绍：主要利用dlib实现摄像头的人脸识别
+# 参考：https://github.com/coneypo/Dlib_face_recognition_from_camera
+# 作者邮箱：476003177@qq.com
+# 使用方法：1、运行get_face_from_camera录入人脸信息；2、运行face_reco_from_camera识别
+
 from features_extraction_to_csv import get_features  # 人脸特征提取方法
 from capture_video import video  # 摄像头类
 import public_variable as pv
@@ -142,7 +147,7 @@ if __name__ == '__main__':
     cap = video(pv.camera_this)
     # 开始检测
     get_face_image_from_camera(person_cnt, detector, cap)
-    # 特征提取，以便于识别之用
+    # 特征提取，以便于识别
     get_features()
     # 关闭
     cap.close()
